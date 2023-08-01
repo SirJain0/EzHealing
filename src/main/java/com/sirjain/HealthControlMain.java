@@ -14,7 +14,7 @@ public class HealthControlMain implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Initializing Health Control!");
-		
+
 		CommandRegistrationCallback.EVENT.register(HealMaxCommand::register);
 		CommandRegistrationCallback.EVENT.register(HealAmountCommand::register);
 	}

@@ -34,9 +34,13 @@ public class HealMaxCommand {
 			return -1;
 
 		if (!((PlayerEntity) player).getAbilities().creativeMode) {
-			int fullAmount = (int) (((PlayerEntity) player).getMaxHealth() - ((PlayerEntity) player).getHealth());
-			((PlayerEntity) player).heal(fullAmount);
-			context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.success"), true);
+			if (((PlayerEntity) player).getHealth() == 20) {
+				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.maxhealth"), false);
+			} else {
+				int fullAmount = (int) (((PlayerEntity) player).getMaxHealth() - ((PlayerEntity) player).getHealth());
+				((PlayerEntity) player).heal(fullAmount);
+				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.success"), true);
+			}
 
 			return 1;
 		} else {
