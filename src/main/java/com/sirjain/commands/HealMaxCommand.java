@@ -1,4 +1,4 @@
-package com.sirjain.commands.heal;
+package com.sirjain.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
