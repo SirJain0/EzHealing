@@ -22,6 +22,7 @@ public class HealAmountCommand {
 	) {
 		serverCommandSourceCommandDispatcher
 			.register(CommandManager.literal("heal")
+			.requires((source) -> source.hasPermissionLevel(2))
 			.then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
 			.executes((ctx) -> healAmount(ctx, IntegerArgumentType.getInteger(ctx, "amount")))));
 	}
