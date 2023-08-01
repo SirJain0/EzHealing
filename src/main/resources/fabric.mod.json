@@ -1,40 +1,42 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "health_control",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Health Control",
+	"description": "Makes it extremely easy to damage or heal yourself without the use of status effects!",
+
 	"authors": [
-		"Me!"
+		"SirJain"
 	],
+
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"twitter": "https://twitter.com/SirJain2",
+		"discord": "https://discord.gg/wM4CKTbFVN",
+		"sources": "https://github.com/SirJain0/HealthControl",
+		"issues": "https://github.com/SirJain0/HealthControl/issues"
 	},
+
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/health_control/icon.png",
 	"environment": "*",
+
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
-		],
-		"client": [
-			"com.example.ExampleModClient"
+			"com.sirjain.HealthControlMain"
 		]
 	},
+
 	"mixins": [
-		"modid.mixins.json",
-		{
-			"config": "modid.client.mixins.json",
-			"environment": "client"
-		}
+		"health_control.mixins.json"
 	],
+
 	"depends": {
 		"fabricloader": ">=0.14.21",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
 	},
+
 	"suggests": {
 		"another-mod": "*"
 	}
