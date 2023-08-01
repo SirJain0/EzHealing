@@ -1,5 +1,6 @@
 package com.sirjain;
 
+import com.sirjain.commands.heal.HealAmountCommand;
 import com.sirjain.commands.heal.HealMaxCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -14,5 +15,6 @@ public class HealthControlMain implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Initializing Health Control!");
 		CommandRegistrationCallback.EVENT.register(HealMaxCommand::register);
+		CommandRegistrationCallback.EVENT.register(HealAmountCommand::register);
 	}
 }

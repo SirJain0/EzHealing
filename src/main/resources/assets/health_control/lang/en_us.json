@@ -1,4 +1,5 @@
 {
-	"commands.heal.max.success": "Healed to max health!",
-	"commands.heal.max.failure": "Unable to execute: Only able to heal in survival!"
+	"commands.heal.generic.success": "Healed to max health!",
+	"commands.heal.generic.failure": "Unable to execute: Only able to heal in survival!",
+	"commands.heal.amount.success": "Successfully healed!"
 }
