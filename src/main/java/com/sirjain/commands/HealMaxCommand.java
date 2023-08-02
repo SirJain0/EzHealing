@@ -14,17 +14,19 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
+import java.util.Objects;
+
 public class HealMaxCommand {
 
 	// Helper method to register command.
 	public static void register(
-		CommandDispatcher<ServerCommandSource> serverCommandSourceCommandDispatcher,
+		CommandDispatcher<ServerCommandSource> dispatcher,
 		CommandRegistryAccess commandRegistryAccess,
 		CommandManager.RegistrationEnvironment registrationEnvironment
 	) {
-		serverCommandSourceCommandDispatcher
+		dispatcher
 			.register(CommandManager.literal("heal")
-			.requires((source) -> source.hasPermissionLevel(2))
+			.requires((source) -> source.hasPermissionLevel(2) && !Objects.requireNonNull(source.getEntity()).isSpectator())
 			.then(CommandManager.argument("target", EntityArgumentType.entity())
 			.executes((context) -> healMax(context, EntityArgumentType.getEntity(context, "target")))));
 	}
@@ -37,7 +39,7 @@ public class HealMaxCommand {
 		float health = entity.getHealth();
 		float maxHealth = entity.getMaxHealth();
 
-		if (entity instanceof PlayerEntity && ((PlayerEntity) entity).getAbilities().creativeMode) {
+		if (entity instanceof PlayerEntity && ((PlayerEntity) entity).getAbilities().creativeMode && entity.isSpectator()) {
 			EzHealingMain.sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
