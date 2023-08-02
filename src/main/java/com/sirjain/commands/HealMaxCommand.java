@@ -28,24 +28,41 @@ public class HealMaxCommand {
 
 	// Runs the heal command with custom value command.
 	private static int healMax(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-		IEntityDataSaver player = (IEntityDataSaver) context.getSource().getPlayer();
+		IEntityDataSaver playerData = (IEntityDataSaver) context.getSource().getPlayer();
+		PlayerEntity player = ((PlayerEntity) playerData);
 
 		if (player == null)
 			return -1;
 
-		if (!((PlayerEntity) player).getAbilities().creativeMode) {
-			if (((PlayerEntity) player).getHealth() == 20) {
-				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.maxhealth"), false);
-			} else {
-				int fullAmount = (int) (((PlayerEntity) player).getMaxHealth() - ((PlayerEntity) player).getHealth());
-				((PlayerEntity) player).heal(fullAmount);
-				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.success"), true);
+		float health = player.getHealth();
+		float maxHealth = player.getMaxHealth();
+
+		if (!player.getAbilities().creativeMode) {
+
+			// Check: Is player already at max health?
+			if (health == maxHealth) {
+				sendMessage(context, false, "commands.heal.maxhealth", false);
+			}
+
+			// If not, heal to max health
+			else {
+				float difference = maxHealth - health;
+				player.heal(difference);
+				sendMessage(context, false, "commands.heal.success", true);
 			}
 
 			return 1;
 		} else {
-			context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.failure").formatted(Formatting.RED), false);
+			sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
+	}
+
+	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
+		context.getSource().sendFeedback(() -> error
+			? Text.translatable(key).formatted(Formatting.RED)
+			: Text.translatable(key),
+			broadcast
+		);
 	}
 }

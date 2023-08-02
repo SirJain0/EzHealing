@@ -28,28 +28,48 @@ public class HealAmountCommand {
 	}
 
 	// Runs the heal command with custom value command.
-	private static int healAmount(CommandContext<ServerCommandSource> context, int amount) throws CommandSyntaxException {
-		IEntityDataSaver player = (IEntityDataSaver) context.getSource().getPlayer();
+	private static int healAmount(CommandContext<ServerCommandSource> context, int healAmount) throws CommandSyntaxException {
+		IEntityDataSaver playerData = (IEntityDataSaver) context.getSource().getPlayer();
+		PlayerEntity player = ((PlayerEntity) playerData);
 
 		if (player == null)
 			return -1;
 
-		if (!((PlayerEntity) player).getAbilities().creativeMode) {
-			if (((PlayerEntity) player).getHealth() == 20) {
-				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.maxhealth"), false);
-			} else if (!(((PlayerEntity) player).getHealth() + amount > 20)) {
-				((PlayerEntity) player).heal(amount);
-				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.amount.success"), true);
-			} else {
-				int fullAmount = (int) (((PlayerEntity) player).getMaxHealth() - ((PlayerEntity) player).getHealth());
-				((PlayerEntity) player).heal(fullAmount);
-				context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.success"), true);
+		float health = player.getHealth();
+		float maxHealth = player.getMaxHealth();
+
+		if (!player.getAbilities().creativeMode) {
+
+			// Check: Is player fully healed?
+			if (health == maxHealth) {
+				sendMessage(context, false, "commands.heal.maxhealth", false);
+			}
+
+			// Check: Is player healing itself beyond his max health? If so, heal to max health only
+			else if (health + healAmount > maxHealth) {
+				float healNeededForMax = maxHealth - health;
+				player.heal(healNeededForMax);
+				sendMessage(context, false, "commands.heal.amount.success", true);
+			}
+
+			// If everything else is fine, execute
+			else {
+				player.heal(healAmount);
+				sendMessage(context, false, "commands.heal.amount.success", true);
 			}
 
 			return 1;
 		} else {
-			context.getSource().sendFeedback(() -> Text.translatable("commands.heal.generic.failure").formatted(Formatting.RED), false);
+			sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
+	}
+
+	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
+		context.getSource().sendFeedback(() -> error
+			? Text.translatable(key).formatted(Formatting.RED)
+			: Text.translatable(key),
+			broadcast
+		);
 	}
 }

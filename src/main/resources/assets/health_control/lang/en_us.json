@@ -1,6 +1,6 @@
 {
-	"commands.heal.generic.maxhealth": "Already at max health!",
-	"commands.heal.generic.success": "Healed to max health!",
-	"commands.heal.generic.failure": "Unable to execute: Only able to heal in survival!",
+	"commands.heal.maxhealth": "Already at max health!",
+	"commands.heal.success": "Healed to max health!",
+	"commands.heal.failure": "Unable to execute: Only able to heal in survival or adventure mode!",
 	"commands.heal.amount.success": "Successfully healed!"
 }
