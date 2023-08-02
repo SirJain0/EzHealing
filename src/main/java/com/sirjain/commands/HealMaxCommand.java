@@ -3,6 +3,7 @@ package com.sirjain.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.sirjain.HealthControlMain;
 import com.sirjain.util.IEntityDataSaver;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,28 +42,20 @@ public class HealMaxCommand {
 
 			// Check: Is player already at max health?
 			if (health == maxHealth) {
-				sendMessage(context, false, "commands.heal.maxhealth", false);
+				HealthControlMain.sendMessage(context, false, "commands.heal.maxhealth", false);
 			}
 
 			// If not, heal to max health
 			else {
 				float difference = maxHealth - health;
 				player.heal(difference);
-				sendMessage(context, false, "commands.heal.success", true);
+				HealthControlMain.sendMessage(context, false, "commands.heal.success", true);
 			}
 
 			return 1;
 		} else {
-			sendMessage(context, true, "commands.heal.failure", false);
+			HealthControlMain.sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
-	}
-
-	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
-		context.getSource().sendFeedback(() -> error
-			? Text.translatable(key).formatted(Formatting.RED)
-			: Text.translatable(key),
-			broadcast
-		);
 	}
 }

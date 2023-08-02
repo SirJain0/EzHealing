@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.sirjain.HealthControlMain;
 import com.sirjain.util.IEntityDataSaver;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,34 +43,26 @@ public class HealAmountCommand {
 
 			// Check: Is player fully healed?
 			if (health == maxHealth) {
-				sendMessage(context, false, "commands.heal.maxhealth", false);
+				HealthControlMain.sendMessage(context, false, "commands.heal.maxhealth", false);
 			}
 
 			// Check: Is player healing itself beyond his max health? If so, heal to max health only
 			else if (health + healAmount > maxHealth) {
 				float healNeededForMax = maxHealth - health;
 				player.heal(healNeededForMax);
-				sendMessage(context, false, "commands.heal.amount.success", true);
+				HealthControlMain.sendMessage(context, false, "commands.heal.amount.success", true);
 			}
 
 			// If everything else is fine, execute
 			else {
 				player.heal(healAmount);
-				sendMessage(context, false, "commands.heal.amount.success", true);
+				HealthControlMain.sendMessage(context, false, "commands.heal.amount.success", true);
 			}
 
 			return 1;
 		} else {
-			sendMessage(context, true, "commands.heal.failure", false);
+			HealthControlMain.sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
-	}
-
-	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
-		context.getSource().sendFeedback(() -> error
-			? Text.translatable(key).formatted(Formatting.RED)
-			: Text.translatable(key),
-			broadcast
-		);
 	}
 }
