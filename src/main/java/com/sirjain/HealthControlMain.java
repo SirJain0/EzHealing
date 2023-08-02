@@ -18,11 +18,15 @@ public class HealthControlMain implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Initializing Health Control!");
+		registerCommands();
+	}
 
+	public void registerCommands() {
 		CommandRegistrationCallback.EVENT.register(HealMaxCommand::register);
 		CommandRegistrationCallback.EVENT.register(HealAmountCommand::register);
 	}
 
+	// Helper method to send chat messages
 	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
 		context.getSource().sendFeedback(() -> error
 			? Text.translatable(key).formatted(Formatting.RED)
