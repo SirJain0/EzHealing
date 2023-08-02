@@ -3,7 +3,7 @@
 	"id": "ez_healing",
 	"version": "${version}",
 	"name": "Ez Healing",
-	"description": "Makes it extremely easy to heal yourself without the use of status effects!",
+	"description": "Makes it extremely easy to heal yourself or other targets without the use of status effects!",
 
 	"authors": [
 		"SirJain"
