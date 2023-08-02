@@ -21,8 +21,7 @@ public class HealMaxCommand {
 		serverCommandSourceCommandDispatcher
 			.register(CommandManager.literal("heal")
 			.requires((source) -> source.hasPermissionLevel(2))
-			.then(CommandManager.literal("max")
-			.executes(HealMaxCommand::healMax)));
+			.executes(HealMaxCommand::healMax));
 	}
 
 	// Runs the heal command with custom value command.
