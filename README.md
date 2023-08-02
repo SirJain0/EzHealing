@@ -15,4 +15,4 @@ In servers, only users with a permission level of 2 are allowed to use the comma
 This mod is supported in versions 1.20+, as well as 1.19-1.19.4.
 
 Mod link: https://curseforge.com/minecraft/mc-mods/ez-healing
-Translations: 
+Translations: https://poeditor.com/join/project/fCwa0aMYzo
