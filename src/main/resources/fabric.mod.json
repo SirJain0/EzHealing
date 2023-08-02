@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "health_control",
+	"id": "ez_healing",
 	"version": "${version}",
-	"name": "Health Control",
-	"description": "Makes it extremely easy to damage or heal yourself without the use of status effects!",
+	"name": "Ez Healing",
+	"description": "Makes it extremely easy to heal yourself without the use of status effects!",
 
 	"authors": [
 		"SirJain"
@@ -12,22 +12,22 @@
 	"contact": {
 		"twitter": "https://twitter.com/SirJain2",
 		"discord": "https://discord.gg/wM4CKTbFVN",
-		"sources": "https://github.com/SirJain0/HealthControl",
-		"issues": "https://github.com/SirJain0/HealthControl/issues"
+		"sources": "https://github.com/SirJain0/EzHealing",
+		"issues": "https://github.com/SirJain0/EzHealing/issues"
 	},
 
 	"license": "CC0-1.0",
-	"icon": "assets/health_control/hc-logo.png",
+	"icon": "assets/ez_healing/eh_logo.png",
 	"environment": "*",
 
 	"entrypoints": {
 		"main": [
-			"com.sirjain.HealthControlMain"
+			"com.sirjain.EzHealingMain"
 		]
 	},
 
 	"mixins": [
-		"health_control.mixins.json"
+		"ez_healing.mixins.json"
 	],
 
 	"depends": {

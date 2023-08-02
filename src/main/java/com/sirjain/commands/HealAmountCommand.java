@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.sirjain.HealthControlMain;
+import com.sirjain.EzHealingMain;
 import com.sirjain.util.IEntityDataSaver;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,25 +41,25 @@ public class HealAmountCommand {
 
 			// Check: Is player fully healed?
 			if (health == maxHealth) {
-				HealthControlMain.sendMessage(context, false, "commands.heal.maxhealth", false);
+				EzHealingMain.sendMessage(context, false, "commands.heal.maxhealth", false);
 			}
 
 			// Check: Is player healing itself beyond his max health? If so, heal to max health only
 			else if (health + healAmount > maxHealth) {
 				float healNeededForMax = maxHealth - health;
 				player.heal(healNeededForMax);
-				HealthControlMain.sendMessage(context, false, "commands.heal.amount.success", true);
+				EzHealingMain.sendMessage(context, false, "commands.heal.amount.success", true);
 			}
 
 			// If everything else is fine, execute
 			else {
 				player.heal(healAmount);
-				HealthControlMain.sendMessage(context, false, "commands.heal.amount.success", true);
+				EzHealingMain.sendMessage(context, false, "commands.heal.amount.success", true);
 			}
 
 			return 1;
 		} else {
-			HealthControlMain.sendMessage(context, true, "commands.heal.failure", false);
+			EzHealingMain.sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
 	}
