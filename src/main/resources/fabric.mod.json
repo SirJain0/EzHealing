@@ -17,7 +17,7 @@
 	},
 
 	"license": "CC0-1.0",
-	"icon": "assets/health_control/icon.png",
+	"icon": "assets/health_control/hc-logo.png",
 	"environment": "*",
 
 	"entrypoints": {
