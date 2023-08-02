@@ -6,6 +6,7 @@ import com.sirjain.commands.HealMaxCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ public class EzHealingMain implements ModInitializer {
 
 	// Helper method to send chat messages
 	public static void sendMessage(CommandContext<ServerCommandSource> context, boolean error, String key, boolean broadcast) {
-		context.getSource().sendFeedback(() -> error
+		context.getSource().sendFeedback(error
 			? Text.translatable(key).formatted(Formatting.RED)
 			: Text.translatable(key),
 			broadcast
