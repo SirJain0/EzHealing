@@ -1,11 +1,9 @@
 package com.sirjain.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sirjain.EzHealingMain;
-import com.sirjain.util.IEntityDataSaver;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
@@ -13,8 +11,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-
-import java.util.Objects;
 
 public class HealMaxCommand {
 
@@ -26,7 +22,7 @@ public class HealMaxCommand {
 	) {
 		dispatcher
 			.register(CommandManager.literal("heal")
-			.requires((source) -> source.hasPermissionLevel(2) && !Objects.requireNonNull(source.getEntity()).isSpectator())
+			.requires((source) -> source.hasPermissionLevel(2))
 			.then(CommandManager.argument("target", EntityArgumentType.entity())
 			.executes((context) -> healMax(context, EntityArgumentType.getEntity(context, "target")))));
 	}

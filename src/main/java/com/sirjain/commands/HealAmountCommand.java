@@ -5,7 +5,6 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sirjain.EzHealingMain;
-import com.sirjain.util.IEntityDataSaver;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.Entity;
@@ -26,7 +25,7 @@ public class HealAmountCommand {
 	) {
 		dispatcher
 			.register(CommandManager.literal("heal")
-			.requires((source) -> source.hasPermissionLevel(2) && !Objects.requireNonNull(source.getEntity()).isSpectator())
+			.requires((source) -> source.hasPermissionLevel(2))
 			.then(CommandManager.argument("target", EntityArgumentType.entity())
 			.then(CommandManager.argument("amount", IntegerArgumentType.integer(1))
 			.executes((ctx) -> healAmount(ctx, IntegerArgumentType.getInteger(ctx, "amount"), EntityArgumentType.getEntity(ctx, "target"))))));
