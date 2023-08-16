@@ -1,0 +1,6 @@
+{
+    "commands.heal.maxhealth": "¡Ya tienes la salud al máximo!",
+    "commands.heal.success": "¡Curado a la máxima salud!",
+    "commands.heal.failure": "No se pudo ejecutar: ¡Solo se puede curar en modo supervivencia o aventura!",
+    "commands.heal.amount.success": "¡Curado exitosamente!"
+}
