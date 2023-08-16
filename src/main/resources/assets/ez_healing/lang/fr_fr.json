@@ -1,0 +1,6 @@
+{
+    "commands.heal.maxhealth": "Déjà à santé maximum!",
+    "commands.heal.success": "Vous avez gueri à santé maximum!",
+    "commands.heal.failure": "Ne peux pas exécutez: Voux pouvez guerissez en survie ou créatif!",
+    "commands.heal.amount.success": "Vouz avez guéri!"
+}
