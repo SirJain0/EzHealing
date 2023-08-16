@@ -39,7 +39,7 @@ public class HealAmountCommand {
 		float health = entity.getHealth();
 		float maxHealth = entity.getMaxHealth();
 
-		if (entity instanceof PlayerEntity && ((PlayerEntity) entity).getAbilities().creativeMode && entity.isSpectator()) {
+		if (entity instanceof PlayerEntity player && (player.getAbilities().creativeMode || player.isSpectator())) {
 			EzHealingMain.sendMessage(context, true, "commands.heal.failure", false);
 			return -1;
 		}
