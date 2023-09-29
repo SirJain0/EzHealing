@@ -17,7 +17,7 @@ public class EzHealingMain implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Initializing Health Control!");
+		LOGGER.info("Initializing Ez Healing!");
 		registerCommands();
 	}
 
